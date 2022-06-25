@@ -24,6 +24,7 @@ jobs:
           echo "Building Image with Version" $version
           docker build . -t $DOCKER_REPO:$version
       - name: Docker Push
+        run: |
           version=${GITHUB_REF##*/}
           echo "Pushing Image with Version" $version
           docker push . -t $DOCKER_REPO:$version
