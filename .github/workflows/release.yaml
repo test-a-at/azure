@@ -2,9 +2,7 @@ on:
   push:
     tags:
       - "**"
-  schedule:
-    - cron: ""
-name: Integration
+name: Release
 
 jobs:
   release:
