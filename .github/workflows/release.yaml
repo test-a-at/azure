@@ -27,7 +27,7 @@ jobs:
           version=${GITHUB_REF##*/}
           echo "Pushing Image with Version" $version
           docker push $DOCKER_REPO:$version
-          echo "`$DOCKER_REPO:$version > docker_link`"
+          echo "`$DOCKER_REPO:$version`"  > docker_link
       - name: Build Binaries
         env:
           CGO_ENABLED: 0
