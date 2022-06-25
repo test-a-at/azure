@@ -1,23 +1,28 @@
 on: push
 
-name: Build & Test
+name: Integration
 
 jobs:
   build:
-    name: "Build & Test"
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
         with:
           go-version: 1.18
-      - name: Try Building
+      - name: Building Binaries
         env:
           CGO_ENABLED: 0
         run: |
-          go build
-      - name: Run Test
+          go build -o myproject
+      - name: Running Unit Tests
         env:
           CGO_ENABLED: 0
         run: |
           go test
+      - name: Running Integration Tests
+        run: |
+          ./myproject &
+          res=$(curl localhost:3000)
+          [[ $res == "Hello World" ]] || exit 1
