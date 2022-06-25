@@ -15,4 +15,4 @@ jobs:
           sudo cp trivy /usr/bin/
       - name: Scan with Trivy
         run: |
-          trivy fs .
+          trivy fs . --exit-code 1
