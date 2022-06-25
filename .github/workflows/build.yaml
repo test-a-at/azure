@@ -14,7 +14,7 @@ jobs:
           - 1.16
           - 1.17
           - 1.18
-    name: Build
+    name: Build & Test
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -38,3 +38,10 @@ jobs:
           sleep 2
           res=$(curl localhost:3000)
           [[ $res == 'Hello, World!' ]] || exit 1
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Build
+        run: |
+          docker build .
