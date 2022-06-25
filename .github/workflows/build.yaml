@@ -32,6 +32,7 @@ jobs:
         run: |
           go test
       - name: Running Integration Tests
+        shell: bash
         run: |
           ./myproject &
           sleep 2
