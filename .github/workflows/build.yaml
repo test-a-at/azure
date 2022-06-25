@@ -25,4 +25,4 @@ jobs:
         run: |
           ./myproject &
           res=$(curl localhost:3000)
-          [[ $res == "Hello World" ]] || exit 1
+          [[ $res == 'Hello, World!' ]] || exit 1
