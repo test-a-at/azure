@@ -1,0 +1,31 @@
+on:
+  push:
+    tags:
+      - "**"
+  schedule:
+    - cron: ""
+name: Integration
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: saadmtsa
+      DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+      DOCKER_REPO: saadmtsa/devops_docker_demo_palestine
+      VERSION_TAG:
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Docker Build
+        run: |
+          version=${GITHUB_REF##*/}
+          echo "Building Image with Version" $version
+          docker build . -t $DOCKER_REPO:$version
+      - name: Docker Push
+          version=${GITHUB_REF##*/}
+          echo "Pushing Image with Version" $version
+          docker push . -t $DOCKER_REPO:$version
