@@ -1,16 +1,12 @@
 on:
-  push:
-    tags:
-      - "**"
+  push
 
-name: Release
+name: Deploy
 
 jobs:
-  release:
-    name: Release
+  deploy:
+    name: Deploy
     runs-on: ubuntu-20.04
-    env:
-      DOCKER_REPO: saadmtsa/devops_docker_demo_palestine
     steps:
       - uses: actions/checkout@v2
       - name: Install Terraform
