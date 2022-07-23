@@ -1,0 +1,29 @@
+on:
+  push:
+    tags:
+      - "**"
+
+name: Release
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-20.04
+    env:
+      DOCKER_REPO: saadmtsa/devops_docker_demo_palestine
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Terraform
+        run: |
+          curl -LO https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip
+          unzip terraform_1.2.5_linux_amd64.zip
+          sudo mv ./terraform /usr/local/bin
+          rm -rf terraform_${tf_version}_linux_amd64.zip
+      - name: Deploy Infrastructure with Terraform
+        env:
+          AWS_ACCESS_KEY_ID: AKIA3YWGYKDZEPKRNEWD
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+        run: |
+          terraform init
+          terraform apply -y
