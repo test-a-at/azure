@@ -1,6 +1,6 @@
 variable "ami" {
   type = string
-  default = "ami-830c94e3"
+  default = "ami-0cff7528ff583bf9a"
   description = "AMI for our EC2 Instance"
 }
 
