@@ -10,11 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Terraform
+        env:
+          TF_VERSION: 1.2.5
         run: |
-          curl -LO https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip
-          unzip terraform_1.2.5_linux_amd64.zip
+          curl -LO https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+          unzip -o terraform_${TF_VERSION}_linux_amd64.zip
           sudo mv ./terraform /usr/local/bin
-          rm -rf terraform_${tf_version}_linux_amd64.zip
+          rm -rf terraform_${TF_VERSION}_linux_amd64.zip
       - name: Deploy Infrastructure with Terraform
         env:
           AWS_ACCESS_KEY_ID: AKIA3YWGYKDZEPKRNEWD
