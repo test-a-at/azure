@@ -14,8 +14,7 @@ jobs:
           TF_VERSION: 1.2.5
         run: |
           curl -LO https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
-          unzip -o terraform_${TF_VERSION}_linux_amd64.zip
-          sudo mv ./terraform /usr/local/bin
+          sudo unzip -o terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin
       - name: Deploy Infrastructure with Terraform
         env:
           AWS_ACCESS_KEY_ID: AKIA3YWGYKDZEPKRNEWD
