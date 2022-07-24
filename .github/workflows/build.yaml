@@ -3,6 +3,15 @@ on: push
 name: Integration
 
 jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Trivy
+        run: |
+          sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+      - name: Scan with Trivy
+        run: |
+          trivy fs --security-checks vuln,config,secret --exit-code 1 ./
   build:
     strategy:
       matrix:
