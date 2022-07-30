@@ -19,8 +19,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
+          TF_VAR_image: 808944423154.dkr.ecr.us-east-1.amazonaws.com/devopsdemo123
         run: |
           BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
           cd terraform
           terraform init -backend-config=key=$BRANCH_NAME
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var environment=$BRANCH_NAME
