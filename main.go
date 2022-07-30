@@ -22,6 +22,10 @@ func main() {
 		return c.SendStatus(200)
 	})
 
+	app.Get("/status", func(c *fiber.Ctx) error {
+		return c.SendString("Bye, World!")
+	})
+
 	app.Get("/weather", func(c *fiber.Ctx) error {
 		url := "https://wttr.in"
 
