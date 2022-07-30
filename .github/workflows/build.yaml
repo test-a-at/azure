@@ -15,7 +15,7 @@ jobs:
           tar xvf tfsec_1.26.3_linux_amd64.tar.gz && sudo mv tfsec /usr/local/bin/
       - name: Scan with Trivy
         run: |
-          trivy fs --security-checks vuln,config,secret --exit-code 1 ./
+          trivy fs --security-checks vuln,secret --exit-code 1 ./
       - name: Scan with GoSec
         run: |
           gosec ./...
