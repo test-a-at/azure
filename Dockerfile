@@ -7,7 +7,7 @@ RUN go build -o backend
 
 
 
-FROM alpine:3.16.1
+FROM gcr.io/distroless/static-debian11
 
 USER nonroot
 COPY --from=builder --chown=nonroot:nonroot /app/backend /
