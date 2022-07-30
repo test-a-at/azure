@@ -80,7 +80,12 @@ jobs:
           docker build . -t docker_demo:pipeline
       - name: Install trivy
         run: |
-          sudo curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
+          TRIVY_VERSION=0.30.4
+
+          curl -o trivy.tar.gz -L https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz
+          tar -xvf trivy.tar.gz
+          sudo mv trivy /usr/local/bin
+
       - name: Scan Image with trivy
         run: |
-          trivy image --security-checks vuln,config,secret --exit-code 1 docker_demo:pipeline
+          trivy image --security-checks vuln,config,secret -s HIGH,CRITICAL --exit-code 1 docker_demo:pipeline
