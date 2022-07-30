@@ -25,7 +25,7 @@ jobs:
 
           ## INSTALL TFSEC ##
           curl -o tfsec -L https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64
-          mv tfsec /usr/local/bin
+          sudo mv tfsec /usr/local/bin
 
       - name: Scan with Trivy
         run: |

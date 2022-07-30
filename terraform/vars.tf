@@ -1,17 +1,15 @@
-variable "ami" {
-  type = string
-  default = "ami-0cff7528ff583bf9a"
-  description = "AMI for our EC2 Instance"
+variable "environment" {
+  type        = string
+  description = "Deployment Environment Name"
 }
 
-variable "instance_type" {
-  type = string
-  default = "t2.micro"
-  description = "EC2 Instance Type"
+variable "image" {
+  type        = string
+  description = "Image URI"
 }
 
-variable "ec2_name" {
-    type = string
-    default = "example"
-    description = "EC2 Instance Name Tag"
+variable "vpc_id" {
+  type        = string
+  description = "Deployment VPC ID"
+  default     = "vpc-0a6ee76d7249f835a"
 }
