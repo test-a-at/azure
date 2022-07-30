@@ -21,7 +21,7 @@ jobs:
           gosec ./...
       - name: Scan with tfsec
         run: |
-          tfsec
+          tfsec -m HIGH
   build:
     needs: [scan]
     strategy:
