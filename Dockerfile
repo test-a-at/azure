@@ -1,6 +1,4 @@
-FROM golang:1.18.3 as builder
-
-ARG CGO_ENABLED=0
+FROM golang:1.18.3
 
 RUN mkdir /app
 
@@ -12,12 +10,4 @@ RUN go build -o backend
 
 EXPOSE 3000
 
-
-
-FROM gcr.io/distroless/static-debian11
-
-WORKDIR /
-
-COPY --chown=nonroot:nonroot --from=builder /app/backend /
-
-ENTRYPOINT [ "/backend" ]
+ENTRYPOINT [ "./backend" ]
